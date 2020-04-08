@@ -11,7 +11,7 @@
 
 ## <a name="description-id"></a>What is Angular Timeline Vertical?
 
-ngx-timeline-vertical is an Angular library that can be imported into any Angular application for quickly creation of a vertical timeline. ngx-timeline-vertical is responsive and lightweight. The code can be viewed on [github](https://github.com/welcher2/ngx-timeline-vertical). Created by Alec Kendall.
+ngx-timeline-vertical is an Angular library that can be imported into any Angular application for quick creation of a vertical timeline. ngx-timeline-vertical is responsive and lightweight. The code can be viewed on [github](https://github.com/welcher2/ngx-timeline-vertical). Created by Alec Kendall.
 
 
 ## <a name="dependencies-id"></a>Dependencies
@@ -176,7 +176,7 @@ Create a `TimelineSegment` in `ngxTimelineSegmentsInit()`. Leave the constructor
 
 ~~~typescript
 ngxTimelineSegmentsInit(): void {
-    var timelineSegment: TimelineSegment = new TimelineSegment();
+    let timelineSegment: TimelineSegment = new TimelineSegment();
 }
 ~~~
 
@@ -184,7 +184,7 @@ Push the created `TimelineSegment` onto the `timelineSegments` array:
 
 ~~~typescript
 ngxTimelineSegmentsInit(): void {
-    var timelineSegment: TimelineSegment = new TimelineSegment();
+    let timelineSegment: TimelineSegment = new TimelineSegment();
     this.timelineSegments.push(timelineSegment);
 }
 ~~~
@@ -235,7 +235,7 @@ export class AppComponent {
   }
 
   ngxTimelineSegmentsInit(): void {
-    var timelineSegment: TimelineSegment = new TimelineSegment();
+    let timelineSegment: TimelineSegment = new TimelineSegment();
     this.timelineSegments.push(timelineSegment);
   }
 }
@@ -270,11 +270,13 @@ You should see:
 
  1. Can I change the timeline thickness?
      
-     * Yes. The timeline thickness is an `Input` variable that gets passed to `<ngx-timeline [timelineThickness]="{{ your_thickness_variable }}"></ngx-timeline>` and can be set through property binding.
+     * Yes. The timeline thickness is an `Input` property of the `NgxTimelineComponent`. It can be changed by passing a value to `[timelineThickness]`:
+     
+     `<ngx-timeline [timelineThickness]="{{ your_thickness_variable }}"></ngx-timeline>`
   
  2. Can I change the font color or size?
      
-     * Yes. The font size and color can be changed by calling `setFontSize()` and `setFontColor` on the corresponding `Event`.
+     * Yes. The font size and color can be changed by calling `setFontSize()` and `setFontColor()` on the corresponding `Event`.
 
  3. Can I change the timeline height?
      
@@ -286,7 +288,7 @@ You should see:
 
  5. Can I make the timeline horizontal?
  
-     * Not currently. This feature will soon be added.
+     * Not currently.
     
  
 ## <a name="troubleshooting-id"></a>Troubleshooting
