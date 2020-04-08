@@ -13,7 +13,7 @@ import { TimelineSegment } from '../models/timelineSegment';
       [ngStyle]="StartpointPos()">
       </ngx-timeline-point>
 
-      <ngx-timeline-segment *ngFor="let timelineSegment of timelineSegments" [timelineSegment]="timelineSegment" [thickness]="timelineThickness"></ngx-timeline-segment>
+      <ngx-timeline-segment *ngFor="let timelineSegment of timelineSegments;" [timelineSegment]="timelineSegment" [thickness]="timelineThickness"></ngx-timeline-segment>
 
       <ngx-timeline-point 
       *ngIf="endpoint"

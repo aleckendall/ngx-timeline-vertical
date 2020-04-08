@@ -1,6 +1,6 @@
 {
   "name": "ngx-timeline-vertical",
-  "version": "0.0.7",
+  "version": "0.0.14",
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",

@@ -31,8 +31,8 @@ export class NgxTimelineLineComponent implements OnInit {
     return {
       'height': '0px',
       'width': '1rem',
-      'border-top-width': 'calc(' + this.line.thickness + '* 0.5)',
-      'border-bottom-width': 'calc(' + this.line.thickness + '* 0.5)',
+      'border-top-width': 'calc(16px +' + this.line.thickness + '* 0.5)',
+      'border-bottom-width': 'calc(16px + ' + this.line.thickness + '* 0.5)',
       'border-top-color': this.line.color,
       'border-bottom-color': this.line.color,
       'border-bottom-style': this.line.style,

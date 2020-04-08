@@ -22,7 +22,8 @@ import { Point } from '../../../models/point';
     p {
       color: event.fontColor;
       font-size: event.fontSize;
-      margin: .5rem;
+      margin-left: .25rem;
+      margin-right: .25rem;
     }
   `]
 })

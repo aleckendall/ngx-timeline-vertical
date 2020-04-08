@@ -14,6 +14,6 @@ import { NgxTimelineTimelineComponent } from './ngx-timeline/ngx-timeline-segmen
   imports: [
     CommonModule
   ],
-  exports: []
+  exports: [CommonModule, NgxTimelineComponent, NgxTimelinePointComponent, NgxTimelineSegmentComponent, NgxTimelineEventComponent, NgxTimelineLineComponent, NgxTimelineTimelineComponent]
 })
 export class NgxTimelineVerticalModule { }
