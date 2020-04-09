@@ -1,8 +1,16 @@
+# ngx-timeline-vertical - Angular vertical timeline widget
+![version](https://img.shields.io/badge/npm-v1.0.2-blue) ![build](https://img.shields.io/badge/build-passing-green) ![minified](https://img.shields.io/badge/minified-10.9kB-green)
+
 # Table of Contents
 * [What is Angular Timline Vertical?](#description-id)
 * [Dependencies](#dependencies-id)
 * [Install](#install-id)
 * [Example](#demo-id)
+    * [Create a timeline](#create-timeline)
+    * [Add an event](#add-event)
+    * [Add a point](#add-point)
+    * [Add a line](#add-line)
+    * [Wrapping up](#wrapping-up)
 * [FAQ](#faq-id)
 * [Troubleshooting](#troubleshooting-id)
 * [How to Contribute](#contribute-id)
@@ -36,7 +44,7 @@ npm install --save ngx-timeline-vertical
 
 ## <a name="demo-id"></a>Example
 
-### From 0 to 1
+### <a name="create-timeline"></a>Create a timeline
 
 Create an Angular application:
 
@@ -84,19 +92,19 @@ export class AppModule { }
 
 ~~~
 
-Import the Event, Point, Line, TimelineProperties, TimelineSegment types into app.component.ts:
+Import the `Event`, `Point`, `Line`, `TimelineProperties`, `TimelineSegment` types into `app.component.ts`:
 
 ~~~typescript
 import { Event, Point, Line, TimelineProperties, TimlineSegment } from 'ngx-timeline-vertical';
 ~~~
 
-Add the NgxTimelineComponent selector to app.component.html:
+Add the `NgxTimelineComponent` selector to `app.component.html`:
 
 ~~~html
 <ngx-timeline></ngx-timeline>
 ~~~
 
-NgxTimelineComponent has four `Input` properties: 
+`NgxTimelineComponent` has four `Input` properties: 
 
 ~~~typescript
 timelineThickness: string;
@@ -105,7 +113,7 @@ endpoint: Point;
 timelineSegments: TimelineSegment[]
 ~~~
 
-In app.component.ts, create the variables to pass to NgxTimelineComponent's `Input` properties. 
+In `app.component.ts`, create the variables to pass to `NgxTimelineComponent`'s `Input` properties. 
 You can give them a name of your choice. In this example, each variable name mirrors the `Input` property it will be binded to.
 
 Your `app.component.ts` should now contain:
@@ -145,7 +153,7 @@ ngxPointInit(): void {
 }
 ~~~
 
-Create a function to intialize `timelineThickness`:
+Create a function to initialize `timelineThickness`:
 
 ~~~typescript
 ngxTimelineThicknessInit(): void {
@@ -153,7 +161,7 @@ ngxTimelineThicknessInit(): void {
 }
 ~~~
 
-Create a function to initalize `timelineSegments`. Leave it blank for now:
+Create a function to initialize `timelineSegments`. Leave it blank for now:
 
 ~~~typescript
 ngxTimelineSegmentsInit(): void {
@@ -161,7 +169,7 @@ ngxTimelineSegmentsInit(): void {
 }
 ~~~
 
-A TimelineSegment constructor takes, in order of appearance, a `TimelineProperties`,  `Point`,  `Event` and `Line`. All parameters are optional. `TimelineProperties` and `Event` are initialized to default values if they aren't provided.
+A `TimelineSegment` constructor takes, in order of appearance, a `TimelineProperties`,  `Point`,  `Event` and `Line`. All parameters are optional. `TimelineProperties` and `Event` are initialized to default values if they aren't provided.
 
 `TimelineProperties` field values are by default set to:
 
@@ -243,7 +251,7 @@ export class AppComponent {
 
 In `app.component.html`, bind your `app.component.ts` variables to `<ngx-timeline></ngx-timline>` `Input` properties:
 
-~~~
+~~~html
 <ngx-timeline
 [timelineThickness]="timelineThickness"
 [startpoint]="startpoint"
@@ -265,6 +273,287 @@ Open a browser and navigate to the link provided by Angular:
 You should see:
 
 ![ngx-timeline-vertical](https://i.imgur.com/SQVlz8F.png)
+
+### <a name="add-event"></a>Add an event
+
+This section builds off of [Create a timeline](#create-timeline).
+
+Create a function in `app.component.ts` named `addEvent()`. Leave it blank for now.
+
+~~~typescript
+addEvent(): void {
+
+}
+~~~
+
+The `Event` constructor takes four fields, in order of appearance: 
+
+~~~typescript
+_fontColor: string;
+_fontSize: string;
+_side: string;
+_text: string;
+~~~
+
+By default these values are set to:
+
+~~~typescript
+_fontColor: string = '#5D21D0'
+_fontSize: string  = '16px', 
+_side: string = 'right'
+_text: string = ''
+~~~
+
+Create a new `TimelineSegment` in `addEvent()`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+}
+~~~
+
+If an `Event` is not passed to the constructor, `TimelineSegment` will initialize `Event` to a its default values. You can access the `Event` of a `TimelineSegment` by calling `getEvent()` on the corresponding `TimlineSegment`. From there, you can change any of the four fields within the `Event` by calling the desired field's setter function: `setFontColor()`, `setFontSize()`, `setSide()`, and `setText()`.
+
+Change your `Event`'s `text` to the string `'This event was added'`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    //Set the text to 'This event was added'.
+    timelineSegment.getEvent().setText('This event was added');
+}
+~~~
+
+By default, an `Event` will be displayed on the right side of a timeline. The `Event`'s `side` field accepts the strings `'left'` or `'right'`. 
+
+Change your `Event`'s `side` field to display `text` on the left side of the timeline:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    //Set the Event side to be on the 'left' of the timeline.
+    timelineSegment.getEvent().setSide('left');
+}
+~~~
+
+### <a name="add-point"></a> Add a point
+
+This section builds off of [Add an event](#add-event).
+
+The `Point` constructor takes three fields, in order of appearance: 
+
+~~~typescript
+_size: string;
+_color: string;
+_borderRadius: string;
+~~~
+
+By default these values are set to:
+
+~~~typescript
+_size: string  = '30px';
+_color: string = '#39CCCC';
+_borderRadius: string = '30px';
+~~~
+
+If a `Point` is not passed to the constructor, `TimelineSegment` will set it to `null`. You can set the `Point` of a `TimelineSegment` by calling `setPoint()` and passing as an argument to `setPoint()` a `Point`. You can then access the `Point` by calling `getPoint()` on `TimelineSegment`. From there, you can change any of the three fields within `Point` by calling the desired field's setter function:  `setSize()`, `setColor()`, and `setBorderRadius()`.
+
+Create a `Point` in the function `addEvent()`. Set `size` to `'20px'`, `color` to `'red'`, and `borderRadius` to `'30px'`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    //Create a new point with a size of '20px', color of 'red', and borderRadius of '30px'. 
+    let point: Point = new Point('20px', 'red', '30px');
+}
+~~~
+
+Add the `Point` to `timelineSegment`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    //Create a new point with a size of '20px', color of 'red', and borderRadius of '30px'. 
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+}
+~~~
+
+### <a name="add-line"></a>Add a line
+
+This section builds off of [Add a point](#add-point).
+
+The `Line` constructor takes three fields, in order of appearance: 
+
+~~~typescript
+_style: string;
+_color: string;
+_thickness: string;
+~~~
+
+By default these values are set to:
+
+~~~typescript
+_style: string = 'solid';
+_color: string = '#39CCCC';
+_thickness: string  = '2px';
+~~~
+
+If a `Line` is not passed to the construtor, `TimelineSegment` will set it to `null`. You can set the `Line` of a `TimelineSegment` by calling `setLine()` and passing as an argument to `setLine()` a `Line`. You can then access the `Line` by calling `getLine()` on `TimelineSegment`. From there, you can change any of the three fields within `Line` by calling the desired field's setter function: `setStyle()`, `setColor()`, and `setThickness()`.
+
+Create a `Line` in function `addEvent()`. Leave the constructor blank:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+    //Create a default line
+    let line: Line = new Line();
+}
+~~~
+
+Change the `Line` `style` to `'dashed'`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+    let line: Line = new Line();
+    //Change the line style to 'dashed'
+    line.setStyle('dashed');
+}
+~~~
+
+Add the `Line` to `timelineSegment`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+    let line: Line = new Line();
+    line.setStyle('dashed');
+    //Add the line to timelineSegment
+    timelineSegment.setLine(line);
+}
+~~~
+
+Your `app.component.ts` should now look like:
+
+
+
+### <a name="wrapping-up"></a>Wrapping up
+
+Within `addEvent()`, push the `TimelineSegment` to `timelineSegments`:
+
+~~~typescript
+addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+    let line: Line = new Line();
+    line.setStyle('dashed');
+    timelineSegment.setLine(line);
+    //Push timelineSegment to timelineSegments
+    this.timelineSegments.push(timelineSegment);
+}
+~~~
+
+Add a button to `app.component.html` and bind it's `(click)` listener to `addEvent()`:
+
+~~~html
+<ngx-timeline
+[timelineThickness]="timelineThickness"
+[startpoint]="startpoint"
+[endpoint]="endpoint"
+[timelineSegments]="timelineSegments"
+></ngx-timeline>
+<button (click)="addEvent()">Click Me!</button>
+~~~
+
+Your `app.component.ts` should now look like:
+
+~~~typescript
+import { Component } from '@angular/core';
+import { Point, TimelineSegment, Line, Event, NgxTimelineLineComponent, TimelineProperties } from 'ngx-timeline-vertical';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'example-app';
+
+  endpoint: Point;
+  startpoint: Point;
+  timelineThickness: string;
+  timelineSegments: TimelineSegment[] = [];
+
+  ngOnInit() {
+    this.ngxPointInit();
+    this.ngxTimelineThicknessInit();
+    this.ngxTimelineSegmentsInit();
+  }
+
+  ngxPointInit(): void {
+    //The Point constructor takes _size: string, _color: string, _borderRadius: string
+    this.startpoint = new Point('40px', '#B10CC8', '30px');
+    this.endpoint = new Point('40px', '#B10CC8', '30px');
+  }
+  
+  ngxTimelineThicknessInit(): void {
+    this.timelineThickness = '20px';
+  }
+
+  ngxTimelineSegmentsInit(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.timelineProperties.setColor('#FFDC00');
+    this.timelineSegments.push(timelineSegment);
+  }
+
+  addEvent(): void {
+    let timelineSegment: TimelineSegment = new TimelineSegment();
+    timelineSegment.getEvent().setText('This event was added');
+    timelineSegment.getEvent().setSide('left');
+    let point: Point = new Point('20px', 'red', '30px');
+    timelineSegment.setPoint(point);
+    let line: Line = new Line();
+    line.setStyle('dashed');
+    timelineSegment.setLine(line);
+    //Push timelineSegment to timelineSegments
+    this.timelineSegments.push(timelineSegment);
+  }
+
+}
+~~~
+
+Run your application:
+
+~~~
+ng serve
+~~~
+
+Navigate to the localhost port provided by Angular.
+
+Click the button and you should now see:
+
+![demo](https://i.imgur.com/PtkAtwH.png)
 
 ## <a name="faq-id"></a>FAQs
 
@@ -298,7 +587,7 @@ You should see:
 
 ## <a name="contribute-id"></a>How to Contribute
 
-Contributions are not currently being accepted. If you enjoy the library, check out my site and follow along with my other [projects](http://demoalpha.com/projects).
+Contributions are not currently being accepted (but will be). If you enjoy the library, check out my site and follow along with my other [projects](http://demoalpha.com/projects). You can also contact me on my [contact page](http://demoalpha.com/contact) if you have any recommendations or just want to chat! This is the first Angular library I've ever made so please do not hesitate to reach out to me with any suggestions you have!
 
 ## <a name="license-id"></a>License
 

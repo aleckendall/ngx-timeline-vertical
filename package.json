@@ -1,9 +1,16 @@
 {
   "name": "ngx-timeline-vertical",
-  "version": "0.0.15",
+  "version": "1.0.1",
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
     "tslib": "^1.10.0"
-  }
+  },
+  "keywords": [
+    "angular",
+    "timeline",
+    "timeline-vertical",
+    "vertical-timeline",
+    "responsive"
+  ]
 }
