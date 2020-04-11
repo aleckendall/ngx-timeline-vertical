@@ -5,7 +5,8 @@ import { Point } from '../../../models/point';
 @Component({
   selector: 'ngx-timeline-line',
   template: `<div [ngStyle]="timelineLineStyle()"></div>`,
-  styles: [``]
+  styles: [``],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelineLineComponent implements OnInit {
 
@@ -15,7 +16,7 @@ export class NgxTimelineLineComponent implements OnInit {
   @Input()
   point: Point;
 
-  timelineLineStyle(): Object {
+  timelineLineStyle(): object {
     if(this.point) {
       return {
         'height': '0px',

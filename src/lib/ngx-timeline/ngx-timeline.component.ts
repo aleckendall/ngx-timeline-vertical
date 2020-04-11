@@ -32,7 +32,8 @@ import { TimelineSegment } from '../models/timelineSegment';
       width: 100%;
       position: relative;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelineComponent {
   

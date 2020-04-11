@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Point } from '../../../models/point';
 import { TimelineProperties } from '../../../models/timelineProperties';
 
 @Component({
   selector: 'ngx-timeline-timeline',
   template: `
-  <div [ngClass]="'ngx-timeline-timeline'" [ngStyle]="TimelineStyle()">
+  <div [ngClass]="'ngx-timeline-timeline'" [ngStyle]="timelineStyle()">
     <ngx-timeline-point *ngIf="point" [timelinePoint]="point"></ngx-timeline-point>
   </div>
   `,
@@ -15,7 +15,8 @@ import { TimelineProperties } from '../../../models/timelineProperties';
       justify-content: center;
       align-items: center;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelineTimelineComponent {
 
@@ -28,7 +29,7 @@ export class NgxTimelineTimelineComponent {
   @Input()
   thickness: String;
 
-  TimelineStyle(): Object {
+  timelineStyle(): object {
     return {
       'width': this.thickness,
       'min-height': this.properties.height,

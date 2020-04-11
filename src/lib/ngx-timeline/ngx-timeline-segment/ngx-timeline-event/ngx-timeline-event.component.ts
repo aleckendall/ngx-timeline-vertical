@@ -6,7 +6,7 @@ import { Point } from '../../../models/point';
   selector: 'ngx-timeline-event',
   template: 
   `
-    <div [ngClass]="'ngx-timeline-event-container'" [ngStyle]="EventMargins()">
+    <div [ngClass]="'ngx-timeline-event-container'" [ngStyle]="eventMargins()">
       <p>{{event.text}}</p>
     </div>
   `,
@@ -25,7 +25,8 @@ import { Point } from '../../../models/point';
       margin-left: .25rem;
       margin-right: .25rem;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelineEventComponent {
 
@@ -37,7 +38,7 @@ export class NgxTimelineEventComponent {
   @Input()
   point: Point;
   
-  EventMargins(): Object {
+  eventMargins(): object {
     if (this.point) 
       return {
         'margin-left': 'calc(' + this.point.getSize() + '* .75)',

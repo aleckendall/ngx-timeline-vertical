@@ -9,14 +9,14 @@ import { Line } from '../../models/line';
   selector: 'ngx-timeline-segment',
   template: `
     <div [ngClass]="'ngx-timeline-segment-container'">
-      <div [ngClass]="'fill'" [ngStyle]="FillContainerWidth()">
+      <div [ngClass]="'fill'" [ngStyle]="fillContainerWidth()">
         <ngx-timeline-event *ngIf="event.text !== '' && event.side === 'left'" [event]="event" [point]="point"></ngx-timeline-event>
       </div>
       <ngx-timeline-timeline [thickness]="thickness" [properties]="timelineProperties" [point]="point"></ngx-timeline-timeline>
-      <div [ngClass]="'fill'" [ngStyle]="FillContainerWidth()">
+      <div [ngClass]="'fill'" [ngStyle]="fillContainerWidth()">
         <ngx-timeline-event *ngIf="event.text !== '' && event.side === 'right'" [event]="event" [point]="point"></ngx-timeline-event>
       </div>
-      <ngx-timeline-line *ngIf="line" [ngStyle]="LinePosStyle()" [line]="line" [point]="point"></ngx-timeline-line>
+      <ngx-timeline-line *ngIf="line" [ngStyle]="linePosStyle()" [line]="line" [point]="point"></ngx-timeline-line>
     </div>
   `,
   styles: [`
@@ -33,7 +33,8 @@ import { Line } from '../../models/line';
       justify-content: center;
       align-items: center;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelineSegmentComponent implements OnInit {
 
@@ -87,7 +88,7 @@ export class NgxTimelineSegmentComponent implements OnInit {
   }
 
   //Set the width of the divs hosting the timeline event to be equal to (container size - timeline thickness) / 2. This ensures the timelines stay aligned in the center.
-  FillContainerWidth(): Object {
+  fillContainerWidth(): object {
     return {
       'min-width': 'calc(50% - (.5 *' + this.thickness + '))',
       'width': '100%'
@@ -95,7 +96,7 @@ export class NgxTimelineSegmentComponent implements OnInit {
   }
 
   //Set the position of the line dependent upon the event side.
-  LinePosStyle(): Object {
+  linePosStyle(): object {
     if (this.event.getSide() === 'right') {
       return {
         'position': 'absolute',

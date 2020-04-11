@@ -4,13 +4,14 @@ import { Point } from '../../models/point';
 @Component({
   selector: 'ngx-timeline-point',
   template: ` <div [ngStyle]="shapeStyle()"></div>`,
-  styles: [``]
+  styles: [``],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxTimelinePointComponent {
 
   @Input()
   timelinePoint: Point;
-  shapeStyle(): Object {
+  shapeStyle(): object {
     return {
       'height': this.timelinePoint.size, 
       'width': this.timelinePoint.size,
