@@ -19,7 +19,7 @@
 
 ## <a name="description-id"></a>What is Angular Timeline Vertical?
 
-ngx-timeline-vertical is an Angular library that can be imported into any Angular application for quick creation of a vertical timeline. ngx-timeline-vertical is responsive and lightweight. The code can be viewed on [github](https://github.com/welcher2/ngx-timeline-vertical). Created by Alec Kendall.
+A componentized, lightweight and dynamic library for creating vertical timelines in Angular.
 
 
 ## <a name="dependencies-id"></a>Dependencies
