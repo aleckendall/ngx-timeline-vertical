@@ -587,7 +587,7 @@ Click the button and you should now see:
 
 ## <a name="contribute-id"></a>How to Contribute
 
-Contributions are not currently being accepted (but will be). If you enjoy the library, check out my site and follow along with my other [projects](http://demoalpha.com/projects). You can also contact me on my [contact page](http://demoalpha.com/contact) if you have any recommendations or just want to chat! This is the first Angular library I've ever made so please do not hesitate to reach out to me with any suggestions you have!
+Contributions are welcome. Simply create a pull request and I will review it then merge.
 
 ## <a name="license-id"></a>License
 
